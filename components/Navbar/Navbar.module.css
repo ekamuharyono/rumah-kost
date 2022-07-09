@@ -1,0 +1,85 @@
+.navBox {
+  @apply bg-blue-500 w-full p-4 text-slate-200
+}
+
+.navBrand {
+  @apply flex justify-between items-center
+}
+
+.humberger {
+  @apply text-4xl
+}
+
+.navLinkHidden {
+  @apply hidden
+}
+
+.navItem {
+  @apply py-3 flex items-center cursor-pointer
+}
+
+.navItem:nth-child(1) {
+  @apply mt-2
+}
+
+.footer {
+  @apply mt-5
+}
+
+.navItemFooter {
+  @apply py-1 flex items-center cursor-pointer
+}
+
+.navItemFooter:nth-child(2) {
+  @apply mt-5
+}
+
+.navItemFooter:hover {
+  @apply text-white font-semibold
+}
+
+@media (min-width: 1024px) {
+  .humberger {
+    @apply hidden
+  }
+
+  .navBox {
+    @apply bg-blue-500 text-slate-200 h-screen col-span-1 relative;
+  }
+
+  .navBrand {
+    @apply py-5 text-slate-100 px-7
+  }
+
+  .navLink {
+    @apply mt-10 block
+  }
+
+  .navLinkHidden {
+    @apply block
+  }
+
+  .navItem {
+    @apply px-7
+  }
+
+  .navItem:hover {
+    @apply text-white font-semibold duration-100
+  }
+
+  .footer {
+    @apply absolute bottom-0 py-6 px-7
+  }
+
+  .navItemFooter {
+    @apply py-1 flex items-center cursor-pointer
+  }
+
+  .navItemFooter:nth-child(2) {
+    @apply mt-7
+  }
+
+  .navItemFooter:hover {
+    @apply text-white font-semibold
+  }
+}

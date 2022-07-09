@@ -1,0 +1,233 @@
+.cardContainer {
+  @apply px-5
+}
+
+.header {
+  @apply flex justify-between items-center py-3
+}
+
+.headerText {
+  @apply font-semibold text-xl text-gray-900
+}
+
+.username {
+  @apply font-semibold text-gray-900 text-sm
+}
+
+.buttonArrow {
+  @apply ml-3
+}
+
+.userInfo {
+  @apply flex items-center bg-white py-2 border rounded-3xl px-3
+}
+
+.avatar {
+  @apply border rounded-full p-1 mr-2
+}
+
+.addClientBox {
+  @apply flex justify-between items-center py-5 pb-7
+}
+
+.addClientTitle {
+  @apply font-semibold text-lg text-gray-900 opacity-90
+}
+
+.addClientDetailText {
+  @apply text-xs opacity-60 font-semibold mt-1
+}
+
+.buttonBox {
+  @apply flex items-center bg-blue-500 py-3 rounded-md text-xs text-slate-50 font-semibold duration-100
+}
+
+.buttonBox:hover {
+  @apply drop-shadow
+}
+
+.buttonIcon {
+  @apply pl-5 text-lg mr-2
+}
+
+.buttonText {
+  @apply pr-7
+}
+
+.searchBox {
+  @apply grid grid-cols-8 gap-1 w-full
+}
+
+.inputBox {
+  @apply flex col-span-5 border rounded-lg p-2 items-center shadow-sm
+}
+
+.formLabel {
+  @apply text-xl font-bold opacity-60 border-r px-2
+}
+
+.formControl {
+  @apply w-full bg-transparent px-3 outline-none h-full
+}
+
+.filterBox {
+  @apply border rounded-lg shadow-sm py-2 relative col-span-3
+}
+
+.filterHeader {
+  @apply flex justify-between items-center px-4
+}
+
+.filterTitle {
+  @apply w-3/4 font-semibold text-sm text-center
+}
+
+.filterIcon {
+  @apply p-1 cursor-pointer duration-100
+}
+
+.filterIcon:hover {
+  @apply rounded-full bg-slate-200
+}
+
+.filterChoicesBox {
+  @apply absolute border border-t-0 rounded-lg pt-5 shadow-sm w-full z-10 font-semibold text-sm opacity-70
+}
+
+.filterChoicesItems {
+  @apply py-1 cursor-pointer flex px-5
+}
+
+.filterChoicesItems:hover {
+  @apply bg-blue-50
+}
+
+.cardBox {
+  @apply hidden
+}
+
+@media (min-width: 1024px) {
+  .header {
+    @apply flex justify-between items-center
+  }
+
+  .headerText {
+    @apply font-semibold text-xl text-gray-900
+  }
+
+  .username {
+    @apply font-semibold text-gray-900
+  }
+
+  .buttonArrow {
+    @apply ml-3
+  }
+
+  .userInfo {
+    @apply flex items-center bg-white p-2 border rounded px-3
+  }
+
+  .avatar {
+    @apply border rounded-full p-1 mr-2
+  }
+
+  .addClientBox {
+    @apply flex justify-between items-center py-5 pb-7
+  }
+
+  .addClientTitle {
+    @apply font-semibold text-lg text-gray-900 opacity-90
+  }
+
+  .addClientDetailText {
+    @apply text-sm opacity-60 font-semibold mt-1
+  }
+
+  .buttonBox {
+    @apply flex items-center bg-blue-500 py-3 rounded-md text-sm text-slate-50 font-semibold duration-100
+  }
+
+  .buttonBox:hover {
+    @apply drop-shadow
+  }
+
+  .buttonIcon {
+    @apply pl-5 text-lg mr-2
+  }
+
+  .buttonText {
+    @apply pr-7
+  }
+
+  .cardBox {
+    @apply grid grid-cols-8 h-14 rounded-md p-4 -mb-5 mt-4 text-slate-600 opacity-80 text-sm
+  }
+
+  .cardId {
+    @apply row-start-1 col-start-1 col-span-1
+  }
+
+  .cardTitle {
+    @apply col-span-3 row-start-1 col-start-3
+  }
+
+  .cardDate {
+    @apply col-start-2 row-start-1 col-span-1
+  }
+
+  .cardPrice {
+    @apply row-start-1 col-start-6
+  }
+
+  .cardStatus {
+    @apply row-start-1 col-start-8 w-max ml-3 text-center
+  }
+
+  .searchBox {
+    @apply grid grid-cols-4 gap-4 w-full
+  }
+
+  .inputBox {
+    @apply flex col-span-3 border rounded-lg p-2 items-center shadow-sm
+  }
+
+  .formLabel {
+    @apply text-xl font-bold opacity-60 border-r px-2
+  }
+
+  .formControl {
+    @apply w-full bg-transparent px-3 outline-none h-full
+  }
+
+  .filterBox {
+    @apply border rounded-lg shadow-sm py-2 col-span-1 relative
+  }
+
+  .filterHeader {
+    @apply flex justify-between items-center px-4
+  }
+
+  .filterTitle {
+    @apply w-3/4 font-semibold text-sm text-center
+  }
+
+  .filterIcon {
+    @apply p-1 cursor-pointer duration-100
+  }
+
+  .filterIcon:hover {
+    @apply rounded-full bg-slate-200
+  }
+
+  .filterChoicesBox {
+    @apply absolute border border-t-0 rounded-lg pt-5 shadow-sm w-full z-10 font-semibold text-sm opacity-70
+  }
+
+  .filterChoicesItems {
+    @apply py-1 cursor-pointer flex px-5
+  }
+
+  .filterChoicesItems:hover {
+    @apply bg-blue-50
+  }
+}

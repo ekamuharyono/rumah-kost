@@ -1,0 +1,49 @@
+.cardBox {
+  @apply bg-white p-5 rounded-lg grid grid-cols-5 grid-rows-3 drop-shadow-sm border my-2
+}
+
+.cardTitle {
+  @apply col-span-3 col-start-1 row-start-1 max-h-10
+}
+
+.cardId {
+  @apply col-start-1 col-span-3 row-start-2 -mt-7
+}
+
+.cardStatus {
+  @apply row-start-1 max-h-10
+}
+
+.cardDate {
+  @apply row-start-2
+}
+
+.cardPrice {
+  @apply row-start-3 col-span-full text-xl
+}
+
+@media (min-width: 1024px) {
+  .cardBox {
+    @apply grid grid-cols-8 my-3 h-14 rounded-md p-4 text-slate-900 opacity-90
+  }
+
+  .cardId {
+    @apply row-start-1 col-start-1 col-span-1 mt-0
+  }
+
+  .cardTitle {
+    @apply col-span-3 row-start-1 col-start-3
+  }
+
+  .cardDate {
+    @apply col-start-2 row-start-1 col-span-1
+  }
+
+  .cardPrice {
+    @apply row-start-1 col-start-6 text-base
+  }
+
+  .cardStatus {
+    @apply row-start-1 col-start-8 -mt-1
+  }
+}

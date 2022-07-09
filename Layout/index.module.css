@@ -1,0 +1,9 @@
+@media (min-width: 1024px) {
+  .index {
+    @apply grid grid-cols-5
+  }
+
+  .info {
+    @apply rounded-l-2xl col-span-4 rounded-r-3xl -ml-5 bg-slate-50 p-10 drop-shadow-2xl max-h-screen
+  }
+}
