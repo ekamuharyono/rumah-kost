@@ -1,0 +1,71 @@
+.authPage {
+  @apply bg-blue-500 w-screen h-screen flex items-center justify-center px-5
+}
+
+.authBox {
+  @apply bg-slate-50 w-96 h-96 rounded shadow-xl relative px-8
+}
+
+.authPageTitle {
+  @apply font-semibold text-2xl text-center py-6 text-slate-700
+}
+
+.inputBox {
+  @apply flex border w-full h-10 my-1 drop-shadow-sm rounded-lg items-center
+}
+
+.formLabel {
+  @apply px-3 text-xl opacity-70
+}
+
+.formControl {
+  @apply outline-none bg-transparent w-full h-full pr-3 text-sm
+}
+
+.showPasswordButton {
+  @apply px-3 text-lg cursor-pointer h-full border-l flex items-center
+}
+
+.formButton {
+  @apply border w-full h-10 bg-blue-500 text-slate-50 my-3 drop-shadow-sm rounded-3xl outline-none font-semibold duration-100
+}
+
+.formButton:hover {
+  @apply drop-shadow bg-blue-600
+}
+
+.sosmedBox {
+  @apply flex items-center justify-center
+}
+
+.sosmedGoogle {
+  @apply mx-2 border border-red-500 rounded-full p-2 text-red-500 cursor-pointer duration-150
+}
+
+.sosmedGoogle:hover {
+  @apply bg-red-500 text-slate-50
+}
+
+.sosmedFacebook {
+  @apply mx-2 border border-blue-600 rounded-full p-2 text-blue-600 cursor-pointer duration-150
+}
+
+.sosmedFacebook:hover {
+  @apply bg-blue-600 text-slate-50
+}
+
+.sosmedLinkedIn {
+  @apply mx-2 border border-blue-700 rounded-full p-2 text-blue-700 cursor-pointer duration-150
+}
+
+.sosmedLinkedIn:hover {
+  @apply bg-blue-700 text-slate-50
+}
+
+.authFooter {
+  @apply text-center text-xs py-3
+}
+
+.authFooterLink {
+  @apply border-b text-blue-900 font-semibold
+}
