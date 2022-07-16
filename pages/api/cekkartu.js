@@ -8,9 +8,9 @@ const Cekkartu = async (req, res) => {
     const dataKartu = await Card.findOne({ idCard: id })
 
     if (dataKartu !== null) {
-      res.status(200)
+      res.status(200).end()
     } else {
-      res.status(404)
+      res.status(404).end()
     }
 
   } else {
