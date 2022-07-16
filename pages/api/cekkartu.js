@@ -8,9 +8,9 @@ const Cekkartu = async (req, res) => {
     const dataKartu = await Card.findOne({ idCard: id })
 
     if (dataKartu !== null) {
-      res.status(200).end()
+      res.status(200).json({ message: 'kartu ditemukan' })
     } else {
-      res.status(404).end()
+      res.status(401).json({ message: 'kartu tidak ditemukan' })
     }
 
   } else {
