@@ -1,7 +1,8 @@
+import { useState } from 'react'
+
 import Layout from '../Layout'
 import Card from '../components/Card/Card'
-import styles from '../styles/payments.module.css'
-import { useState } from 'react'
+import styles from '../styles/index.module.css'
 import { IoPersonOutline, IoChevronDownOutline, IoChevronUpOutline, IoSearchOutline, IoAddOutline } from 'react-icons/io5'
 
 const Payments = () => {

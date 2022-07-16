@@ -44,13 +44,13 @@ const Navbar = () => {
           <Link href={'/legal'}>
             <a className={styles.navItem}>
               <IoKeyOutline />
-              <span className='ml-4'>LEGAL</span>
+              <span className='ml-4'>SIGN IN</span>
             </a>
           </Link>
           <Link href={'/payments'}>
             <a className={styles.navItem}>
               <IoWalletOutline />
-              <span className='ml-4'>PAYMENTS</span>
+              <span className='ml-4'>SIGN UP</span>
             </a>
           </Link>
         </div>

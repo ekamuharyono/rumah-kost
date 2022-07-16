@@ -1,6 +1,10 @@
+import axios from 'axios'
 import Link from 'next/link'
 import { useState } from 'react'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import styles from '../../styles/authPages.module.css'
+import { notifyError, notifyInfo, notifySuccess, notifyWarning } from '../../utils/notify'
 import {
   IoPersonCircleOutline,
   IoLogoGoogle,
@@ -15,22 +19,43 @@ import {
 const Register = () => {
 
   const [showPassword, setShowPassword] = useState(false)
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    axios({
+      method: 'post',
+      url: 'http://localhost:3000/api/user/register',
+      data: {
+        username, email, password
+      },
+      responseType: 'json'
+    })
+      .then(res => {
+        res.data.notifyColor == 'warning' ? notifyWarning(res.data.message) : notifyInfo(res.data.message)
+      })
+      .catch(err => notifyError(err.response.data.message))
+  }
 
   return (
     <div className={styles.authPage}>
+      <ToastContainer />
       <div className={styles.authBox}>
         <h1 className={styles.authPageTitle}>Create Account</h1>
-        <form action="">
+        <form onSubmit={handleSubmit}>
           <div className={styles.inputBox}>
             <label htmlFor='username' className={styles.formLabel}>
               <IoPersonCircleOutline />
             </label>
             <input
-              id='username'
-              required
               type="text"
+              id='username'
+              value={username}
               placeholder='Username'
               className={styles.formControl}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
           <div className={styles.inputBox}>
@@ -39,10 +64,11 @@ const Register = () => {
             </label>
             <input
               id='email'
-              required
               type="email"
+              value={email}
               placeholder='Email'
               className={styles.formControl}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className={styles.inputBox}>
@@ -50,11 +76,13 @@ const Register = () => {
               <IoLockClosedOutline />
             </label>
             <input
+              minLength='4'
               id='password'
-              required
-              type={showPassword ? 'text' : 'password'}
+              value={password}
               placeholder='Password'
               className={styles.formControl}
+              type={showPassword ? 'text' : 'password'}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <span onClick={() => setShowPassword(!showPassword)} className={styles.showPasswordButton}>
               {showPassword ? <IoEyeOffOutline /> : <IoEyeOutline />}

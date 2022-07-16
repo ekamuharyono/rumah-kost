@@ -1,12 +1,16 @@
+import axios from 'axios'
 import Link from 'next/link'
 import { useState } from 'react'
+import { useRouter } from 'next/router'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import styles from '../../styles/authPages.module.css'
+import { notifyError, notifySuccess } from '../../utils/notify'
 import {
   IoPersonCircleOutline,
   IoLogoGoogle,
   IoLogoFacebook,
   IoLogoLinkedin,
-  IoAtOutline,
   IoLockClosedOutline,
   IoEyeOffOutline,
   IoEyeOutline
@@ -15,22 +19,58 @@ import {
 const Login = () => {
 
   const [showPassword, setShowPassword] = useState(false)
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+
+  const router = useRouter()
+
+  const handleLogin = async (e) => {
+    e.preventDefault()
+
+    const response = await axios({
+      method: 'post',
+      url: 'http://localhost:3000/api/user/login',
+      data: {
+        username, password
+      },
+      responseType: 'json'
+    })
+
+    if (response.status === 200) {
+      console.log(response)
+      notifySuccess(response.data.message)
+      setTimeout(() => {
+        router.push('/admin/dashboard')
+      }, 3000)
+    } else {
+      notifyError(err.response.data.message)
+    }
+    // .then(res => {
+    //   console.log(res)
+    //   // notifySuccess(res.data.message)
+    //   // setTimeout(() => {
+    //   //   router.push('/api/hello')
+    //   // }, 3000)
+    // })
+    // .catch(err => notifyError(err.response.data.message))
+  }
 
   return (
     <div className={styles.authPage}>
+      <ToastContainer />
       <div className={styles.authBox}>
         <h1 className={styles.authPageTitle}>LOGIN</h1>
-        <form action="">
+        <form onSubmit={handleLogin}>
           <div className={styles.inputBox}>
             <label htmlFor='username' className={styles.formLabel}>
               <IoPersonCircleOutline />
             </label>
             <input
               id='username'
-              required
               type="text"
               placeholder='Username'
               className={styles.formControl}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
           <div className={styles.inputBox}>
@@ -39,10 +79,10 @@ const Login = () => {
             </label>
             <input
               id='password'
-              required
               type={showPassword ? 'text' : 'password'}
               placeholder='Password'
               className={styles.formControl}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <span onClick={() => setShowPassword(!showPassword)} className={styles.showPasswordButton}>
               {showPassword ? <IoEyeOffOutline /> : <IoEyeOutline />}
@@ -65,7 +105,7 @@ const Login = () => {
             <IoLogoLinkedin />
           </span>
         </div>
-        <p className={styles.authFooter}>Don't have an Account? <Link href={'/auth/register'}><a className={styles.authFooterLink}>Create Account</a></Link> </p>
+        <p className={styles.authFooter}>Don&apos;t have an Account? <Link href={'/auth/register'}><a className={styles.authFooterLink}>Create Account</a></Link> </p>
       </div>
     </div>
   );
