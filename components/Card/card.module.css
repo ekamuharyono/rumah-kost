@@ -18,6 +18,10 @@
   @apply row-start-2
 }
 
+.cardBayarButton {
+  @apply row-start-2
+}
+
 .cardPrice {
   @apply row-start-3 col-span-full text-xl
 }
@@ -36,6 +40,10 @@
   }
 
   .cardDate {
+    @apply col-start-2 row-start-1 col-span-1
+  }
+
+  .cardBayarButton {
     @apply col-start-2 row-start-1 col-span-1
   }
 

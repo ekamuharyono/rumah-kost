@@ -27,7 +27,7 @@ const Register = () => {
     e.preventDefault()
     axios({
       method: 'post',
-      url: 'http://localhost:3000/api/user/register',
+      url: '/api/user/register',
       data: {
         username, email, password
       },

@@ -3,7 +3,7 @@ import Card from '../../models/Card'
 
 const Cekkartu = async (req, res) => {
   if (req.method === 'GET') {
-    const { id } = req.query
+    const { id, from } = req.query
 
     const dataKartu = await Card.findOne({ idCard: id })
 

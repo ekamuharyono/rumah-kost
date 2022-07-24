@@ -27,7 +27,7 @@
 }
 
 .addClientBox {
-  @apply flex justify-between items-center py-5 pb-7
+  @apply flex justify-between items-center py-5 pb-7 max-h-screen
 }
 
 .addClientTitle {
@@ -220,7 +220,7 @@
   }
 
   .filterChoicesBox {
-    @apply absolute border border-t-0 rounded-lg pt-5 shadow-sm w-full z-10 font-semibold text-sm opacity-70
+    @apply absolute border border-t-0 rounded-lg pt-5 shadow-sm w-full z-10 font-semibold text-sm opacity-100 bg-slate-50
   }
 
   .filterChoicesItems {

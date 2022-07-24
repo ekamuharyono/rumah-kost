@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import styles from './Navbar.module.css'
-import { IoHomeOutline, IoPodiumOutline, IoGiftOutline, IoWalletOutline, IoKeyOutline, IoChatbubbleEllipsesOutline, IoHelpCircleOutline, IoMenuOutline, IoCloseOutline } from 'react-icons/io5'
+import { IoHomeOutline, IoLogInOutline, IoPeopleOutline, IoChatbubbleEllipsesOutline, IoHelpCircleOutline, IoMenuOutline, IoCloseOutline } from 'react-icons/io5'
 
 const Navbar = () => {
 
@@ -26,31 +26,19 @@ const Navbar = () => {
           <Link href={'/'}>
             <a className={styles.navItem}>
               <IoHomeOutline />
-              <span className='ml-4'>HOME</span>
+              <span className='ml-4'>DASHBOARD</span>
             </a>
           </Link>
-          <Link href={'/company'}>
+          <Link href={'/client'}>
             <a className={styles.navItem}>
-              <IoPodiumOutline />
-              <span className='ml-4'>COMPANY</span>
+              <IoPeopleOutline />
+              <span className='ml-4'>CLIENTS</span>
             </a>
           </Link>
-          <Link href={'/perks'}>
+          <Link href={'/auth/login'}>
             <a className={styles.navItem}>
-              <IoGiftOutline />
-              <span className='ml-4'>PERKS</span>
-            </a>
-          </Link>
-          <Link href={'/legal'}>
-            <a className={styles.navItem}>
-              <IoKeyOutline />
-              <span className='ml-4'>SIGN IN</span>
-            </a>
-          </Link>
-          <Link href={'/payments'}>
-            <a className={styles.navItem}>
-              <IoWalletOutline />
-              <span className='ml-4'>SIGN UP</span>
+              <IoLogInOutline />
+              <span className='ml-4'>LOGIN</span>
             </a>
           </Link>
         </div>
