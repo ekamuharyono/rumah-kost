@@ -112,7 +112,7 @@ const Clients = () => {
         </Link>
       </div>
 
-      <div className=''>
+      <div className='px-5'>
         <div className={styles.searchBox}>
           <form onSubmit={handleSearch} className={styles.inputBox}>
             <label htmlFor="search" className={styles.formLabel}><IoSearchOutline /></label>

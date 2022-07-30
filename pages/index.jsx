@@ -46,7 +46,7 @@ const Payments = () => {
       <div className='px-5'>
         {/* header payments */}
         <div className={styles.header}>
-          <h1 className={styles.headerText}>Payments</h1>
+          <h1 className={styles.headerText}>Dashboard</h1>
           <div className={styles.userInfo}>
             <span className={styles.avatar}>
               <IoPersonOutline />

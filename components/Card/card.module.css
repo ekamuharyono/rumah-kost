@@ -3,7 +3,7 @@
 }
 
 .cardTitle {
-  @apply col-span-3 col-start-2 row-start-1 max-h-10
+  @apply col-span-2 col-start-1 row-start-2 max-h-10
 }
 
 .cardId {
@@ -11,7 +11,7 @@
 }
 
 .cardStatus {
-  @apply row-start-1 max-h-10
+  @apply row-start-1 max-h-10 col-start-4
 }
 
 .cardDate {

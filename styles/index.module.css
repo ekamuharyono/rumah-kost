@@ -27,7 +27,7 @@
 }
 
 .addClientBox {
-  @apply flex justify-between items-center py-5 pb-7 max-h-screen
+  @apply flex justify-between items-center py-5 pb-7 max-h-screen px-5
 }
 
 .addClientTitle {
