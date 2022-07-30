@@ -26,11 +26,19 @@ const clientSchema = new Schema({
     type: String,
     required: true,
   },
+  registerAt: {
+    type: Number,
+    required: true,
+  },
+  activeFor: {
+    type: Number,
+    required: true
+  },
   fingerprints: {
     type: Array,
     default: [String],
     required: true
-  }
+  },
 })
 
 

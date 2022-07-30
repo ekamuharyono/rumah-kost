@@ -49,17 +49,10 @@ const Add = () => {
     })
   }
 
-  const clearScanner = async () => {
-    await axios({
-      method: 'get',
-      url: '/api/client/clearScanner',
-      responseType: 'json'
-    })
-  }
-
   const saveData = (e) => {
     e.preventDefault()
     setScannerActive(false)
+    const now = Date.now()
     axios({
       method: 'POST',
       url: '/api/client/add',
@@ -71,13 +64,15 @@ const Add = () => {
         statusPernikahan,
         nomorKamar,
         nomorKartu,
-        fingerprints
+        fingerprints,
+        registerAt: now,
+        activeFor: now + 2592000000
       },
       responseType: 'json'
     })
-      .then(response => {
+      .then(async (response) => {
         notifySuccess(response.data.message)
-        clearScanner()
+        axios.get('/api/client/clearScanner')
         setTimeout(() => {
           router.push('/client')
         }, 3000)

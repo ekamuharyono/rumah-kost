@@ -4,12 +4,12 @@ import Client from '../../../models/Client'
 const Add = async (req, res) => {
   req.method !== 'POST' && res.status(400).json({ message: 'only receive post request' })
 
-  const { namaLengkap, nohp, email, pekerjaan, statusPernikahan, nomorKartu, nomorKamar, fingerprints } = req.body
+  const { namaLengkap, nohp, email, pekerjaan, statusPernikahan, nomorKartu, nomorKamar, fingerprints, registerAt, activeFor } = req.body
 
-  if (namaLengkap && nohp && statusPernikahan && pekerjaan && nomorKartu && nomorKamar && fingerprints) {
+  if (namaLengkap && nohp && statusPernikahan && pekerjaan && nomorKartu && nomorKamar && fingerprints && registerAt && activeFor) {
     try {
       const newClient = {
-        namaLengkap, nohp, email, pekerjaan, statusPernikahan, nomorKartu, nomorKamar, fingerprints
+        namaLengkap, nohp, email, pekerjaan, statusPernikahan, nomorKartu, nomorKamar, fingerprints, registerAt, activeFor
       }
       await Client.create(newClient)
       res.status(200).json({ message: 'data client berhasil ditambahkan' })

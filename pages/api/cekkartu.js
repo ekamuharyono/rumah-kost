@@ -1,13 +1,13 @@
 import connectDB from "../../utils/db";
-import Card from '../../models/Card'
+import Client from '../../models/Client'
 
 const Cekkartu = async (req, res) => {
   if (req.method === 'GET') {
     const { id, from } = req.query
 
-    const dataKartu = await Card.findOne({ idCard: id })
+    const dataKartu = await Client.findOne({ nomorKartu: id })
 
-    if (dataKartu !== null) {
+    if (dataKartu !== null && dataKartu.nomorKamar === from) {
       res.status(200).json({ message: 'kartu ditemukan' })
     } else {
       res.status(401).json({ message: 'kartu tidak ditemukan' })
