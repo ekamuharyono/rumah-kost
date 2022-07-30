@@ -15,7 +15,7 @@
 }
 
 .cardDate {
-  @apply row-start-2
+  @apply row-start-2 w-max h-max
 }
 
 .cardBayarButton {
@@ -36,7 +36,7 @@
   }
 
   .cardTitle {
-    @apply col-span-3 row-start-1 col-start-3
+    @apply col-span-3 row-start-1 col-start-4
   }
 
   .cardDate {

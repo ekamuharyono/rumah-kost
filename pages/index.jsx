@@ -1,5 +1,5 @@
-import { useState } from 'react'
-
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 import Layout from '../Layout'
 import Card from '../components/Card/Card'
 import styles from '../styles/index.module.css'
@@ -7,8 +7,19 @@ import { IoPersonOutline, IoChevronDownOutline, IoChevronUpOutline, IoSearchOutl
 
 const Payments = () => {
 
+  const [clients, setClients] = useState([])
   const [showFilterBox, setShowFilterBox] = useState(false)
   const [filterValue, setFilterValue] = useState('Show all')
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: '/api/client',
+      responseType: 'json'
+    })
+      .then(response => setClients(response.data))
+      .catch(error => console.log(error))
+  }, [])
 
   const filterShowAll = () => {
     setFilterValue('Show all')
@@ -53,10 +64,7 @@ const Payments = () => {
             <h1 className={styles.addClientTitle}>Invoices</h1>
             <p className={styles.addClientDetailText}>List of all of your transactions.</p>
           </div>
-          <button className={styles.buttonBox}>
-            <span className={styles.buttonIcon}><IoAddOutline /></span>
-            <p className={styles.buttonText}>NEW INVOICE</p>
-          </button>
+
         </div>
 
         <div className=''>
@@ -87,19 +95,17 @@ const Payments = () => {
           <div className='font-semibold'>
             {/* header bar recently transaction (desktop only) */}
             <div className={styles.cardBox}>
-              <p className={styles.cardId}>ID Card</p>
-              <p className={styles.cardDate}>Date</p>
+              <p className={styles.cardId}>No.</p>
+              <p className={styles.cardDate}>End Kontrak</p>
               <p className={styles.cardTitle}>Client</p>
               <span className={styles.cardPrice}>Amount</span>
               <span className={styles.cardStatus}><p>Status</p></span>
             </div>
             {/* client recently transactions */}
-            <div>
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
+            <div className='relative overflow-y-hidden'>
+              {clients.length > 0 ? clients.map((client, i) => (
+                <Card key={i} date={new Date(client.activeFor).toDateString("en-US")} namaLengkap={client.namaLengkap} nomorKartu={i + 1} nomorKamar={client.status} />
+              )) : <h1 className='flex justify-center mt-10'>Data Tidak Ditemukan</h1>}
             </div>
           </div>
         </div>
