@@ -11,15 +11,15 @@
 }
 
 .cardStatus {
-  @apply row-start-1 max-h-10 col-start-4
+  @apply row-start-1 max-h-10 col-start-4 absolute right-0
 }
 
 .cardDate {
-  @apply row-start-2 w-max h-max
+  @apply row-start-2 w-max h-max absolute right-4
 }
 
 .cardBayarButton {
-  @apply row-start-2
+  @apply row-start-2 absolute right-3
 }
 
 .cardPrice {
@@ -52,6 +52,6 @@
   }
 
   .cardStatus {
-    @apply row-start-1 col-start-8 -mt-1
+    @apply row-start-1 col-start-8 -mt-1 relative
   }
 }
