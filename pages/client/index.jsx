@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import Layout from '../../Layout'
 import Card from '../../components/Card/Card'
+import Modal from '../../components/Modal/Modal'
 import styles from '../../styles/index.module.css'
 import { IoChevronDownOutline, IoChevronUpOutline, IoSearchOutline, IoAddOutline } from 'react-icons/io5'
 
@@ -12,6 +13,7 @@ const Clients = () => {
 
   const [clients, setClients] = useState([])
   const [showFilterBox, setShowFilterBox] = useState(false)
+  const [showModalBox, setShowModalBox] = useState(false)
   const [filterValue, setFilterValue] = useState('Show all')
 
   useEffect(() => {
@@ -153,6 +155,7 @@ const Clients = () => {
             )) : <h1 className='flex justify-center mt-10'>Data Tidak Ditemukan</h1>}
           </div>
         </div>
+        {showModalBox ? <Modal /> : ''}
       </div>
     </Layout>
   );

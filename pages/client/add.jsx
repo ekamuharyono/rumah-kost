@@ -3,14 +3,17 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 import Layout from '../../Layout'
+import styles from '../../styles/index.module.css'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 import { notifyError, notifySuccess } from '../../utils/notify'
-import { IoChevronForward, IoChevronBack, IoFingerPrintOutline } from 'react-icons/io5'
+import { IoChevronForward, IoChevronBack, IoFingerPrintOutline, IoChevronDownOutline, IoChevronUpOutline, IoSearchOutline, IoAddOutline } from 'react-icons/io5'
 
 const Add = () => {
 
   const router = useRouter()
+
+  const [showFilterBox, setShowFilterBox] = useState(false)
 
   const [namaLengkap, setNamaLengkap] = useState('')
   const [nohp, setNohp] = useState('')
@@ -20,38 +23,14 @@ const Add = () => {
   const [nomorKartu, setNomorKartu] = useState('')
   const [nomorKamar, setNomorKamar] = useState('')
   const [showPage2, setShowPage2] = useState(false)
-  const [scannerActive, setScannerActive] = useState(false)
-  const [fingerprintDetected, setFingerprintDetected] = useState(0)
   const [fingerprints, setFingerprints] = useState([])
-
-  if (scannerActive) {
-    setInterval(async () => {
-      const response = await axios({
-        method: 'get',
-        url: `/api/client/scanFingerprint?activateFingerprint=${scannerActive}`,
-        responseType: 'json'
-      })
-      setFingerprints(response.data.fingerprintDetected)
-      setFingerprintDetected(response.data.fingerprintDetected.length)
-    }, 5000)
-  }
 
   const goToPage2 = () => {
     setShowPage2(!showPage2)
   }
 
-  const activateFingerprintScanner = async () => {
-    setScannerActive(!scannerActive)
-    await axios({
-      method: 'get',
-      url: `/api/client/scanFingerprint?activateFingerprint=true`,
-      responseType: 'json'
-    })
-  }
-
   const saveData = (e) => {
     e.preventDefault()
-    setScannerActive(false)
     const now = Date.now()
     axios({
       method: 'POST',
@@ -72,7 +51,6 @@ const Add = () => {
     })
       .then(async (response) => {
         notifySuccess(response.data.message)
-        axios.get('/api/client/clearScanner')
         setTimeout(() => {
           router.push('/client')
         }, 3000)
@@ -108,10 +86,22 @@ const Add = () => {
           </div>
           <div className='py-3 flex justify-between items-center'>
             <label htmlFor="statusPernikahan">Status Pernikahan</label>
-            <select onChange={(e) => setStatusPernikahan(e.target.value)} id="statusPernikahan" className='w-9/12 h-11 bg-white py-2 px-5 outline-none border rounded-3xl shadow'>
-              <option value="sudah menikah">Sudah Menikah</option>
-              <option value="belum menikah">Belum Menikah</option>
-            </select>
+            <div className='w-9/12 py-2 px-5 outline-none border rounded-3xl cursor-pointer shadow focus:drop-shadow'>
+              <div className={styles.filterBox} onClick={() => setShowFilterBox(!showFilterBox)}>
+                <div className={styles.filterHeader}>
+                  <p className={styles.filterTitle}>{statusPernikahan === '' ? 'Status Pernikahan' : `${statusPernikahan}`}</p>
+                  <span className={styles.filterIcon}>
+                    {showFilterBox ? <IoChevronUpOutline /> : <IoChevronDownOutline />}
+                  </span>
+                </div>
+                {showFilterBox && (
+                  <ul className={styles.filterChoicesBox}>
+                    <li className={styles.filterChoicesItems} onClick={() => setStatusPernikahan('Belum Menikah')}>Belum Menikah</li>
+                    <li className={styles.filterChoicesItems} onClick={() => setStatusPernikahan('Sudah Menikah')}>Sudah Menikah</li>
+                  </ul>
+                  )}
+              </div>
+            </div>
           </div>
           <span onClick={goToPage2} className='flex items-center justify-around bg-blue-400 py-4 px-5 font-semibold w-32 cursor-pointer drop-shadow-sm rounded-full text-slate-50 absolute right-0 mt-5 mr-5 hover:bg-blue-500 hover:drop-shadow duration-75'>
             <span>Next</span>
@@ -129,11 +119,18 @@ const Add = () => {
             <label htmlFor="nomorKamar">Nomor Kamar</label>
             <input type="text" id='nomorKamar' name='nomorKamar' onChange={(e) => setNomorKamar(e.target.value)} className='w-9/12 py-2 px-5 outline-none border rounded-3xl shadow focus:drop-shadow' />
           </div>
-          <span className='my-3 flex justify-center h-28 items-center relative'>
-            <span className='absolute top-0'>{fingerprintDetected == 0 ? <h1 className='font-semibold'>No Fingerprint Detected</h1> : <h1 className='font-semibold'>Fingerprint Detected : {fingerprintDetected}</h1>}</span>
-            <span onClick={activateFingerprintScanner} className='absolute text-6xl z-10 my-5 cursor-pointer hover:text-blue-700 duration-100'><IoFingerPrintOutline /></span>
-            <span className='absolute bottom-0 font-semibold'>{scannerActive ? 'Stop Scanning' : 'Scan Fingerprint'}</span>
-          </span>
+          <div className='py-3 flex justify-between items-center'>
+            <label htmlFor="fingerprint1">Fingerprint 1</label>
+            <input type="text" id='fingerprint1' name='fingerprin1' onChange={(e) => setFingerprints([...fingerprints,e.target.value])} className='w-9/12 py-2 px-5 outline-none border rounded-3xl shadow focus:drop-shadow' />
+          </div>
+          <div className='py-3 flex justify-between items-center'>
+            <label htmlFor="fingerprint2">Fingerprint 2</label>
+            <input type="text" id='fingerprint2' name='fingerprint2' onChange={(e) => setFingerprints([...fingerprints,e.target.value])} className='w-9/12 py-2 px-5 outline-none border rounded-3xl shadow focus:drop-shadow' />
+          </div>
+          <div className='py-3 flex justify-between items-center'>
+            <label htmlFor="fingerprint3">Fingerprint 3</label>
+            <input type="text" id='fingerprint3' name='fingerprint3' onChange={(e) => setFingerprints([...fingerprints,e.target.value])} className='w-9/12 py-2 px-5 outline-none border rounded-3xl shadow focus:drop-shadow' />
+          </div>
           <div className='flex justify-between'>
             <span onClick={goToPage2} className='flex items-center justify-around bg-blue-400 py-4 px-5 font-semibold w-32 cursor-pointer drop-shadow-sm rounded-full text-slate-50 mt-5 mr-5 hover:bg-blue-500 hover:drop-shadow duration-75'>
               <span><IoChevronBack /></span>

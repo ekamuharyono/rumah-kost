@@ -19,7 +19,7 @@
 }
 
 .cardBayarButton {
-  @apply row-start-2 absolute right-3
+  @apply row-start-2 absolute right-3 
 }
 
 .cardPrice {
@@ -28,7 +28,7 @@
 
 @media (min-width: 1024px) {
   .cardBox {
-    @apply grid grid-cols-8 my-3 h-14 rounded-md p-4 text-slate-900 opacity-90
+    @apply grid grid-cols-8 my-3 h-14 rounded-md p-4 text-slate-900 opacity-90 -z-10
   }
 
   .cardId {
@@ -44,7 +44,7 @@
   }
 
   .cardBayarButton {
-    @apply col-start-2 row-start-1 col-span-1
+    @apply col-start-2 row-start-1 col-span-1 relative ml-5
   }
 
   .cardPrice {

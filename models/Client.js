@@ -43,6 +43,10 @@ const clientSchema = new Schema({
     type: String,
     default: 'Active'
   },
+  amount: {
+    type: String,
+    default: '150.000.00'
+  }
 })
 
 
