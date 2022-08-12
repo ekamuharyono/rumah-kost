@@ -15,6 +15,14 @@ const Clients = () => {
   const [showFilterBox, setShowFilterBox] = useState(false)
   const [showModalBox, setShowModalBox] = useState(false)
   const [filterValue, setFilterValue] = useState('Show all')
+  const [namaLengkap, setNamaLengkap] = useState('')
+  const [nomorKartu, setNomorKartu] = useState("")
+
+  const activeModalBox = (namaLengkap, nomorKartu) => {
+    setShowModalBox(!showModalBox)
+    setNamaLengkap(namaLengkap)
+    setNomorKartu(nomorKartu)
+  }
 
   useEffect(() => {
     axios({
@@ -151,12 +159,12 @@ const Clients = () => {
           {/* client recently transactions */}
           <div className='relative overflow-y-hidden'>
             {clients.length > 0 ? clients.map((client, i) => (
-              <Card key={i} type={'action'} namaLengkap={client.namaLengkap} nomorKartu={client.nomorKartu} nomorKamar={client.nomorKamar} />
+              <Card key={i} activeModalBox={activeModalBox} type={'action'} namaLengkap={client.namaLengkap} nomorKartu={client.nomorKartu} nomorKamar={client.nomorKamar} />
             )) : <h1 className='flex justify-center mt-10'>Data Tidak Ditemukan</h1>}
           </div>
         </div>
-        {showModalBox ? <Modal /> : ''}
       </div>
+      {showModalBox ? <Modal activeModalBox={activeModalBox} namaLengkap={namaLengkap} nomorKartu={nomorKartu}/> : ''}
     </Layout>
   );
 }

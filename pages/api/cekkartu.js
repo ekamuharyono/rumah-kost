@@ -7,10 +7,10 @@ const Cekkartu = async (req, res) => {
 
     const dataKartu = await Client.findOne({ nomorKartu: id })
 
-    if (dataKartu !== null && dataKartu.nomorKamar === from) {
+    if (dataKartu !== null && dataKartu.nomorKamar === from && dataKartu.status === 'Active') {
       res.status(200).json({ message: 'kartu ditemukan' })
     } else {
-      res.status(401).json({ message: 'kartu tidak ditemukan' })
+      res.status(401).json({ message: 'kartu tidak ditemukan | masa aktif berakhir' })
     }
 
   } else {

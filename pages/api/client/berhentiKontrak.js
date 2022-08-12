@@ -1,15 +1,14 @@
 import connectDB from '../../../utils/db'
 import Client from '../../../models/Client'
 
-const PerpanjangKontrak = async (req, res) => {
+const BerhentiKontrak = async (req, res) => {
   const { nomorKartu } = req.body
   if (req.method === 'PUT') {
     const client = await Client.find({ nomorKartu })
     // res.status(200).json({ activeFor: client[0].activeFor })
-    let newActiveFor = client[0].activeFor + 2592000000
     if (client.length > 0) {
-      await Client.updateOne({ nomorKartu }, { activeFor: newActiveFor, status: 'Active' })
-      res.status(200).json({ message: 'Kontrak di Perpanjang' })
+      await Client.updateOne({ nomorKartu }, { status: "InActive" })
+      res.status(200).json({ message: 'Kontrak di Akhiri' })
     } else {
       res.status(404).json({ message: 'client tidak ditemukan' })
     }
@@ -17,4 +16,4 @@ const PerpanjangKontrak = async (req, res) => {
   }
 }
 
-export default connectDB(PerpanjangKontrak);
+export default connectDB(BerhentiKontrak);

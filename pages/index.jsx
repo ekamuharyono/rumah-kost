@@ -96,12 +96,12 @@ const Payments = () => {
             {/* header bar recently transaction (desktop only) */}
             <div className={styles.cardBox}>
               <p className={styles.cardId}>No.</p>
-              <p className={styles.cardDate}>End Kontrak</p>
+              <p className={styles.cardDate}>Akhir Kontrak</p>
               <p className={styles.cardTitle}>Client</p>
               <span className={styles.cardPrice}>Amount</span>
               <span className={styles.cardStatus}><p>Status</p></span>
             </div>
-            {/* client recently transactions */}
+            
             <div className='relative overflow-y-hidden'>
               {clients.length > 0 ? clients.map((client, i) => (
                 <Card key={i} date={new Date(client.activeFor).toDateString("en-US")} namaLengkap={client.namaLengkap} nomorKartu={i + 1} nomorKamar={client.status} />
