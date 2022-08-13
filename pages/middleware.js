@@ -1,8 +1,12 @@
 import { NextResponse } from 'next/server'
 import { verify } from 'jsonwebtoken'
 
+export const config = {
+  matcher: ["/", "/client/:path*"]
+}
+
 export default function middleware(req) {
-  const screetkey = process.env.SCREET_KEY_REACT_APP
+  const screetkey = GU0JJtNrLWKM7uPB
   const { cookies } = req
   const token = cookies.OursiteJWT
   const url = req.url
