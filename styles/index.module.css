@@ -11,19 +11,19 @@
 }
 
 .username {
-  @apply font-semibold text-gray-900 text-sm
+  @apply font-semibold text-gray-900 text-sm z-20
 }
 
 .buttonArrow {
-  @apply ml-3
+  @apply ml-3 z-20
 }
 
 .userInfo {
-  @apply flex items-center bg-white py-2 border rounded-3xl px-3
+  @apply flex items-center bg-white py-2 border rounded-3xl px-3 relative z-50
 }
 
 .avatar {
-  @apply border rounded-full p-1 mr-2
+  @apply border rounded-full p-1 mr-2 z-20
 }
 
 .addClientBox {
@@ -95,7 +95,7 @@
 }
 
 .filterChoicesItems {
-  @apply py-1 cursor-pointer flex px-5
+  @apply py-1 cursor-pointer flex px-5 justify-between items-center
 }
 
 .filterChoicesItems:hover {
@@ -120,7 +120,11 @@
   }
 
   .buttonArrow {
-    @apply ml-3
+    @apply ml-3 cursor-pointer p-1 rounded-full duration-100
+  }
+
+  .buttonArrow:hover {
+    @apply bg-slate-100
   }
 
   .userInfo {

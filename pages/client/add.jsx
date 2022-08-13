@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import Layout from '../../Layout'
 import styles from '../../styles/index.module.css'
@@ -24,6 +24,13 @@ const Add = () => {
   const [nomorKamar, setNomorKamar] = useState('')
   const [showPage2, setShowPage2] = useState(false)
   const [fingerprints, setFingerprints] = useState([])
+  const [user, setUser] = useState({})
+
+  useEffect(() => {
+    axios.get("/api/user")
+      .then(response => setUser(response.data))
+      .catch(err => router.push('/auth/login'))
+  }, [])
 
   const goToPage2 = () => {
     setShowPage2(!showPage2)
@@ -99,7 +106,7 @@ const Add = () => {
                     <li className={styles.filterChoicesItems} onClick={() => setStatusPernikahan('Belum Menikah')}>Belum Menikah</li>
                     <li className={styles.filterChoicesItems} onClick={() => setStatusPernikahan('Sudah Menikah')}>Sudah Menikah</li>
                   </ul>
-                  )}
+                )}
               </div>
             </div>
           </div>
@@ -121,15 +128,15 @@ const Add = () => {
           </div>
           <div className='py-3 flex justify-between items-center'>
             <label htmlFor="fingerprint1">Fingerprint 1</label>
-            <input type="text" id='fingerprint1' name='fingerprin1' onChange={(e) => setFingerprints([...fingerprints,e.target.value])} className='w-9/12 py-2 px-5 outline-none border rounded-3xl shadow focus:drop-shadow' />
+            <input type="text" id='fingerprint1' name='fingerprin1' onChange={(e) => setFingerprints([...fingerprints, e.target.value])} className='w-9/12 py-2 px-5 outline-none border rounded-3xl shadow focus:drop-shadow' />
           </div>
           <div className='py-3 flex justify-between items-center'>
             <label htmlFor="fingerprint2">Fingerprint 2</label>
-            <input type="text" id='fingerprint2' name='fingerprint2' onChange={(e) => setFingerprints([...fingerprints,e.target.value])} className='w-9/12 py-2 px-5 outline-none border rounded-3xl shadow focus:drop-shadow' />
+            <input type="text" id='fingerprint2' name='fingerprint2' onChange={(e) => setFingerprints([...fingerprints, e.target.value])} className='w-9/12 py-2 px-5 outline-none border rounded-3xl shadow focus:drop-shadow' />
           </div>
           <div className='py-3 flex justify-between items-center'>
             <label htmlFor="fingerprint3">Fingerprint 3</label>
-            <input type="text" id='fingerprint3' name='fingerprint3' onChange={(e) => setFingerprints([...fingerprints,e.target.value])} className='w-9/12 py-2 px-5 outline-none border rounded-3xl shadow focus:drop-shadow' />
+            <input type="text" id='fingerprint3' name='fingerprint3' onChange={(e) => setFingerprints([...fingerprints, e.target.value])} className='w-9/12 py-2 px-5 outline-none border rounded-3xl shadow focus:drop-shadow' />
           </div>
           <div className='flex justify-between'>
             <span onClick={goToPage2} className='flex items-center justify-around bg-blue-400 py-4 px-5 font-semibold w-32 cursor-pointer drop-shadow-sm rounded-full text-slate-50 mt-5 mr-5 hover:bg-blue-500 hover:drop-shadow duration-75'>

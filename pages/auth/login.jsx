@@ -41,7 +41,7 @@ const Login = () => {
         notifySuccess(response.data.message)
         setTimeout(() => {
           router.push('/')
-        }, 3000)
+        }, 2000)
       }
     } catch (error) {
       notifyError(error.response.data.message)

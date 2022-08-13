@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import axios from 'axios'
 
@@ -11,12 +12,15 @@ import { IoChevronDownOutline, IoChevronUpOutline, IoSearchOutline, IoAddOutline
 
 const Clients = () => {
 
+  const router = useRouter()
+
   const [clients, setClients] = useState([])
   const [showFilterBox, setShowFilterBox] = useState(false)
   const [showModalBox, setShowModalBox] = useState(false)
   const [filterValue, setFilterValue] = useState('Show all')
   const [namaLengkap, setNamaLengkap] = useState('')
   const [nomorKartu, setNomorKartu] = useState("")
+  const [user, setUser] = useState({})
 
   const activeModalBox = (namaLengkap, nomorKartu) => {
     setShowModalBox(!showModalBox)
@@ -24,7 +28,15 @@ const Clients = () => {
     setNomorKartu(nomorKartu)
   }
 
+  const getUserData = async () => {
+    await axios.get("/api/user")
+      .then(response => setUser(response.data))
+      .catch(err => router.push('/auth/login'))
+  }
+
   useEffect(() => {
+    getUserData()
+
     axios({
       method: 'get',
       url: '/api/client',
@@ -164,7 +176,7 @@ const Clients = () => {
           </div>
         </div>
       </div>
-      {showModalBox ? <Modal activeModalBox={activeModalBox} namaLengkap={namaLengkap} nomorKartu={nomorKartu}/> : ''}
+      {showModalBox ? <Modal activeModalBox={activeModalBox} namaLengkap={namaLengkap} nomorKartu={nomorKartu} /> : ''}
     </Layout>
   );
 }

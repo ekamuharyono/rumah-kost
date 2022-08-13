@@ -1,24 +1,43 @@
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import axios from 'axios'
 import Layout from '../Layout'
 import Card from '../components/Card/Card'
+import Loading from '../components/Loading/Loading'
 import styles from '../styles/index.module.css'
-import { IoPersonOutline, IoChevronDownOutline, IoChevronUpOutline, IoSearchOutline, IoAddOutline } from 'react-icons/io5'
+import { IoPersonOutline, IoPencilOutline, IoLogOutOutline, IoChevronDownOutline, IoChevronUpOutline, IoSearchOutline, IoAddOutline } from 'react-icons/io5'
 
 const Payments = () => {
+
+  const router = useRouter()
 
   const [clients, setClients] = useState([])
   const [showFilterBox, setShowFilterBox] = useState(false)
   const [filterValue, setFilterValue] = useState('Show all')
+  const [user, setUser] = useState({})
+  const [showMenu, setShowMenu] = useState(false)
+  const [loading, setLoading] = useState(true)
+
+  const getUserData = async () => {
+    await axios.get("/api/user")
+      .then(response => setUser(response.data))
+      .catch(err => router.push('/auth/login'))
+  }
 
   useEffect(() => {
+    getUserData()
+
     axios({
       method: 'get',
       url: '/api/client',
       responseType: 'json'
     })
-      .then(response => setClients(response.data))
+      .then(response => {
+        setClients(response.data)
+        setLoading(false)
+      })
       .catch(error => console.log(error))
+
   }, [])
 
   const filterShowAll = () => {
@@ -41,20 +60,36 @@ const Payments = () => {
     setShowFilterBox(false)
   }
 
+  const handleShowMenu = () => {
+    setShowMenu(!showMenu)
+  }
+
+  const handleLogout = async () => {
+    await axios.get("/api/user/logout").then(response => router.push("/auth/login"))
+  }
+
+  const goToEditProfile = () => { }
+
   return (
     <Layout>
       <div className='px-5'>
         {/* header payments */}
         <div className={styles.header}>
           <h1 className={styles.headerText}>Dashboard</h1>
-          <div className={styles.userInfo}>
+          <div onClick={() => handleShowMenu()} className={styles.userInfo}>
             <span className={styles.avatar}>
               <IoPersonOutline />
             </span>
-            <h1 className={styles.username}>Eka Muharyono</h1>
+            <h1 className={styles.username}>{user.username}</h1>
             <span className={styles.buttonArrow}>
-              <IoChevronDownOutline />
+              {showMenu ? <IoChevronUpOutline /> : <IoChevronDownOutline />}
             </span>
+            {showMenu && (
+              <ul className="absolute left-0 z-10 top-7  cursor-pointer border-t-0 rounded-lg rounded-t-none pt-5 shadow-sm w-full font-semibold text-sm bg-white">
+                <li className={styles.filterChoicesItems} onClick={() => goToEditProfile()}><p>Edit</p><p><IoPencilOutline /></p></li>
+                <li className={styles.filterChoicesItems} onClick={() => handleLogout()}><p>Logout</p><p><IoLogOutOutline /></p></li>
+              </ul>
+            )}
           </div>
         </div>
 
@@ -101,13 +136,14 @@ const Payments = () => {
               <span className={styles.cardPrice}>Amount</span>
               <span className={styles.cardStatus}><p>Status</p></span>
             </div>
-            
+
             <div className='relative overflow-y-hidden'>
               {clients.length > 0 ? clients.map((client, i) => (
                 <Card key={i} date={new Date(client.activeFor).toDateString("en-US")} namaLengkap={client.namaLengkap} nomorKartu={i + 1} nomorKamar={client.status} />
-              )) : <h1 className='flex justify-center mt-10'>Data Tidak Ditemukan</h1>}
+              )) : <h1 className={loading ? 'hidden' : 'flex justify-center mt-10'}>Data Tidak Ditemukan</h1>}
             </div>
           </div>
+          <div className={loading ? 'block' : 'hidden'}><Loading /></div>
         </div>
       </div>
     </Layout>
