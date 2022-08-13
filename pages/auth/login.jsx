@@ -27,32 +27,25 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault()
 
-    const response = await axios({
-      method: 'post',
-      url: '/api/user/login',
-      data: {
-        username, password
-      },
-      responseType: 'json'
-    })
+    try {
+      const response = await axios({
+        method: 'post',
+        url: '/api/user/login',
+        data: {
+          username, password
+        },
+        responseType: 'json'
+      })
 
-    if (response.status === 200) {
-      console.log(response)
-      notifySuccess(response.data.message)
-      setTimeout(() => {
-        router.push('/admin/dashboard')
-      }, 3000)
-    } else {
-      notifyError(err.response.data.message)
+      if (response.status === 200) {
+        notifySuccess(response.data.message)
+        setTimeout(() => {
+          router.push('/')
+        }, 3000)
+      }
+    } catch (error) {
+      notifyError(error.response.data.message)
     }
-    // .then(res => {
-    //   console.log(res)
-    //   // notifySuccess(res.data.message)
-    //   // setTimeout(() => {
-    //   //   router.push('/api/hello')
-    //   // }, 3000)
-    // })
-    // .catch(err => notifyError(err.response.data.message))
   }
 
   return (
