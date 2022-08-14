@@ -5,6 +5,7 @@ import axios from 'axios'
 
 import Layout from '../../Layout'
 import Card from '../../components/Card/Card'
+import Loading from '../../components/Loading/Loading'
 import Modal from '../../components/Modal/Modal'
 import styles from '../../styles/index.module.css'
 import { IoChevronDownOutline, IoChevronUpOutline, IoSearchOutline, IoAddOutline } from 'react-icons/io5'
@@ -21,6 +22,7 @@ const Clients = () => {
   const [namaLengkap, setNamaLengkap] = useState('')
   const [nomorKartu, setNomorKartu] = useState("")
   const [user, setUser] = useState({})
+  const [loading, setLoading] = useState(true)
 
   const activeModalBox = (namaLengkap, nomorKartu) => {
     setShowModalBox(!showModalBox)
@@ -42,7 +44,10 @@ const Clients = () => {
       url: '/api/client',
       responseType: 'json'
     })
-      .then(response => setClients(response.data))
+      .then(response => {
+        setClients(response.data)
+        setLoading(false)
+      })
       .catch(error => console.log(error))
   }, []);
 
@@ -174,6 +179,7 @@ const Clients = () => {
               <Card key={i} activeModalBox={activeModalBox} type={'action'} namaLengkap={client.namaLengkap} nomorKartu={client.nomorKartu} nomorKamar={client.nomorKamar} />
             )) : <h1 className='flex justify-center mt-10'>Data Tidak Ditemukan</h1>}
           </div>
+          <div className={loading ? 'block' : 'hidden'}><Loading /></div>
         </div>
       </div>
       {showModalBox ? <Modal activeModalBox={activeModalBox} namaLengkap={namaLengkap} nomorKartu={nomorKartu} /> : ''}

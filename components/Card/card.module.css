@@ -19,7 +19,7 @@
 }
 
 .cardBayarButton {
-  @apply row-start-2 absolute right-3 
+  @apply row-start-3 absolute right-3
 }
 
 .cardPrice {
