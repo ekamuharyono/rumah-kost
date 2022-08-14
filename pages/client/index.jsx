@@ -177,7 +177,7 @@ const Clients = () => {
           <div className='relative overflow-y-hidden'>
             {clients.length > 0 ? clients.map((client, i) => (
               <Card key={i} activeModalBox={activeModalBox} type={'action'} namaLengkap={client.namaLengkap} nomorKartu={client.nomorKartu} nomorKamar={client.nomorKamar} />
-            )) : <h1 className='flex justify-center mt-10'>Data Tidak Ditemukan</h1>}
+            )) : <h1 className={loading ? 'hidden' : 'flex justify-center mt-10'}>Data Tidak Ditemukan</h1>}
           </div>
           <div className={loading ? 'block' : 'hidden'}><Loading /></div>
         </div>
